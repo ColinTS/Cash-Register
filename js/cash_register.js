@@ -3,12 +3,6 @@ var myCalc = calculatorModule();
 var calculatorOperator;
 var balance = 0;
 var display = document.getElementById("display");
-var nanError = function(){
-  if(typeof display.innerHTML !== 'number'){
-    display.innerHTML = 'Ooops, not a number!';
-    console.log("NAN");
-}
-};
 
 var btnBox = document.getElementById("btn-box");
 
@@ -44,7 +38,7 @@ document.getElementById("NumberZero").addEventListener('click', () => {
   display.innerHTML += 0;
 });
 document.getElementById("DoubleZero").addEventListener('click', () => {
-  display.innerHTML += Number('0') + Number('0');
+  display.innerHTML += Number('0')
   //MISSING: Double zeros not working
 });
 document.getElementById("Decimal").addEventListener('click', () => {
@@ -120,6 +114,9 @@ clearButton.innerHTML = 'Clear';
 clearButton.id = 'clr';
 clearButton.addEventListener('click', () => {
   display.innerHTML = '';
+  if(display.innerHTML.indexOf('.' === false)){
+    document.getElementById("Decimal").disabled = false;
+  }
 });
 btnBox.appendChild(clearButton);
 
