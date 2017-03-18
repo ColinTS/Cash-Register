@@ -1,6 +1,55 @@
 #display {
-    width: 300px;
+    width: 400px;
+    height: 15px;
     border: 1px solid green;
     padding: 25px;
     margin: 25px;
+    margin-left: auto ;
+    margin-right: auto ;
+    background-color: #42f4b9;
+}
+
+#NumberOne, #NumberTwo, #NumberThree, #NumberFour, #NumberFive,
+#NumberSix, #NumberSeven, #NumberEight, #NumberNine, #NumberZero,
+#DoubleZero, #Decimal{
+    background-color: #f44242;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    margin: 3px 3px;
+    cursor: pointer;
+}
+
+#firstSet, #secondSet, #thirdSet, #fourthSet, #btn-box{
+  display: block;
+  text-align: center;
+}
+
+#div, #mltply, #subtrct, #add, #eql{
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 3px 3px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#clr, #blnce, #dpst, #wthdrw{
+  background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 3px 3px;
+    cursor: pointer;
+    display: inline-block;
 }
