@@ -94,9 +94,13 @@ var subtractButton = document.createElement('button');
 subtractButton.innerHTML = '-';
 subtractButton.id = 'subtrct';
 subtractButton.addEventListener('click', () => {
+  if(display.innerHTML === '$'){
+    display.innerHTML += "-";
+  }else{
   myCalc.load(Number(display.innerHTML.replace('$','')));
   display.innerHTML = '$';
   calculatorOperator = myCalc.subtract;
+  }
 });
 btnBox.appendChild(subtractButton);
 
