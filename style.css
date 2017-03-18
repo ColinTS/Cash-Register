@@ -23,9 +23,15 @@
     cursor: pointer;
 }
 
-#firstSet, #secondSet, #thirdSet, #fourthSet, #btn-box{
-  display: block;
-  text-align: center;
+#firstSet, #secondSet, #thirdSet, #fourthSet{
+    display: block;
+    text-align: center;
+}
+
+#btn-box{
+    display: block;
+    text-align: center;
+    padding-top: 20px;
 }
 
 #div, #mltply, #subtrct, #add, #eql{
@@ -42,7 +48,7 @@
 }
 
 #clr, #blnce, #dpst, #wthdrw{
-  background-color: grey;
+    background-color: grey;
     color: white;
     border: none;
     padding: 10px 20px;

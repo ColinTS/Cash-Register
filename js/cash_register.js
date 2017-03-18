@@ -3,25 +3,12 @@ var myCalc = calculatorModule();
 var calculatorOperator;
 var balance = 0;
 var display = document.querySelector("#display");
-// var displayNum = 0;
-display.innerHTML = '$'
+display.innerHTML = '$';
 
 var nmbrBox = document.querySelector("#nmbr-box");
 var btnBox = document.querySelector("#btn-box");
-//Number Button Generator
-//var nmbrBox = document.getElementById("nmbr-box");
-//var numBtns = 10;
 
-// for (var i = 0; i < numBtns; i++) {
-//   var btn = document.createElement('button');
-// btn.innerHTML = `${i}`;
-// btn.id = 'Btn' + i;
-// btn.addEventListener('click', function(event) {
-//   display.innerHTML += i
-// });
-// btnBox.appendChild(btn);
-// }
-console.log((7).toFixed(2));
+//Number buttons
 document.querySelector("#NumberOne").addEventListener('click', () => {
   display.innerHTML += 1;
 });
@@ -54,7 +41,7 @@ document.querySelector("#NumberZero").addEventListener('click', () => {
 });
 document.querySelector("#DoubleZero").addEventListener('click', () => {
   display.innerHTML += Number('0')
-  //MISSING: Double zeros not working
+
 });
 document.querySelector("#Decimal").addEventListener('click', () => {
   display.innerHTML += '.';
@@ -70,11 +57,14 @@ divideButton.id = 'div';
 divideButton.addEventListener('click', () => {
   if(display.innerHTML === ''){
     display.innerHTML = 'Ooops, not a number!';
-}else{
+} else {
     myCalc.load(Number(display.innerHTML.replace('$','')));
     display.innerHTML = '$';
     calculatorOperator = myCalc.divide;
-}
+  }
+  if(display.innerHTML.indexOf('.' === false)){
+    document.getElementById("Decimal").disabled = false;
+  }
 });
 btnBox.appendChild(divideButton);
 
@@ -83,6 +73,9 @@ var multiplyButton = document.createElement('button');
 multiplyButton.innerHTML = 'x';
 multiplyButton.id = 'mltply';
 multiplyButton.addEventListener('click', () => {
+  if(display.innerHTML.indexOf('.' === false)){
+    document.getElementById("Decimal").disabled = false;
+  }
   myCalc.load(Number(display.innerHTML.replace('$','')));
   display.innerHTML = '$';
   calculatorOperator = myCalc.multiply;
@@ -96,10 +89,13 @@ subtractButton.id = 'subtrct';
 subtractButton.addEventListener('click', () => {
   if(display.innerHTML === '$'){
     display.innerHTML += "-";
-  }else{
-  myCalc.load(Number(display.innerHTML.replace('$','')));
-  display.innerHTML = '$';
-  calculatorOperator = myCalc.subtract;
+} else {
+    myCalc.load(Number(display.innerHTML.replace('$','')));
+    display.innerHTML = '$';
+    calculatorOperator = myCalc.subtract;
+  }
+  if(display.innerHTML.indexOf('.' === false)){
+    document.getElementById("Decimal").disabled = false;
   }
 });
 btnBox.appendChild(subtractButton);
@@ -109,6 +105,9 @@ var addButton = document.createElement('button');
 addButton.innerHTML = '+';
 addButton.id = 'add';
 addButton.addEventListener('click', () => {
+  if(display.innerHTML.indexOf('.' === false)){
+    document.getElementById("Decimal").disabled = false;
+  }
   myCalc.load(Number(display.innerHTML.replace('$','')));
   display.innerHTML = '$';
   calculatorOperator = myCalc.add;
@@ -122,9 +121,9 @@ equalButton.id = 'eql';
 equalButton.addEventListener('click', () => {
   if(calculatorOperator === myCalc.divide && Number(display.innerHTML.replace('$','')) === 0){
     display.innerHTML = 'Cannot divide by 0';
-  } else {
-  calculatorOperator(Number(display.innerHTML.replace('$','')));
-  display.innerHTML = '$' + myCalc.getTotal();
+} else {
+    calculatorOperator(Number(display.innerHTML.replace('$','')));
+    display.innerHTML = '$' + myCalc.getTotal();
   }
 });
 btnBox.appendChild(equalButton);
@@ -156,9 +155,12 @@ var depositButton = document.createElement('button');
 depositButton.innerHTML = 'Deposit';
 depositButton.id = 'dpst';
 depositButton.addEventListener('click', () => {
-  balance += Number(display.innerHTML.replace('$',''));
-  display.innerHTML = '';
-  console.log(balance);
+  if(display.innerHTML.indexOf('-') !== -1){
+    display.innerHTML = "You cannot deposit a negative number!"
+} else {
+    balance += Number(display.innerHTML.replace('$',''));
+    display.innerHTML = '';
+  }
 });
 btnBox.appendChild(depositButton);
 
@@ -171,19 +173,13 @@ withdrawButton.addEventListener('click', () => {
   if(Number(display.innerHTML) > balance){
     display.innerHTML = 'Ooops, not enough funds!';
     console.log("here")
-  }else{
+} else if(display.innerHTML.indexOf('-') !== -1){
+    display.innerHTML = "You cannot withdraw a negative number!"
+} else {
     balance -= Number(display.innerHTML.replace('$',''));
     display.innerHTML = '$';
     console.log(balance);
   }
 });
 btnBox.appendChild(withdrawButton);
-
-
-
-
-
-
-
-
 })();
