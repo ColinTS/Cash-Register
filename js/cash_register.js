@@ -123,7 +123,7 @@ equalButton.addEventListener('click', () => {
     display.innerHTML = 'Cannot divide by 0';
 } else {
     calculatorOperator(Number(display.innerHTML.replace('$','')));
-    display.innerHTML = '$' + myCalc.getTotal();
+    display.innerHTML = '$' + myCalc.getTotal().toFixed(2);
   }
 });
 btnBox.appendChild(equalButton);
@@ -134,6 +134,7 @@ clearButton.innerHTML = 'Clear';
 clearButton.id = 'clr';
 clearButton.addEventListener('click', () => {
   display.innerHTML = '$';
+  myCalc.load(0);
   if(display.innerHTML.indexOf('.' === false)){
     document.getElementById("Decimal").disabled = false;
   }
@@ -172,7 +173,7 @@ withdrawButton.id = 'wthdrw';
 withdrawButton.addEventListener('click', () => {
   if(Number(display.innerHTML) > balance){
     display.innerHTML = 'Ooops, not enough funds!';
-    console.log("here")
+    console.log("here");
 } else if(display.innerHTML.indexOf('-') !== -1){
     display.innerHTML = "You cannot withdraw a negative number!"
 } else {
